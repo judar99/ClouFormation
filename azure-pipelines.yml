@@ -13,9 +13,14 @@ steps:
 - task: DownloadPipelineArtifact@2
   displayName: 'Download CloudFormation template'
   inputs:
-    artifactName: 'nombre-del-artifact'
+    artifactName: 'crud'
     downloadPath: '$(System.ArtifactsDirectory)/cloudformation'
     artifactDownloadPath: 'ClouFormation/CRUD_cloudfomration.yaml'
+- task: PublishPipelineArtifact@1
+  displayName: 'Publish CloudFormation template artifact'
+  inputs:
+    artifactName: 'crud'
+    targetPath: 'ClouFormation/CRUD_cloudfomration.yaml'
 
 - task: CloudFormationCreateOrUpdateStack@1
   inputs:
@@ -23,7 +28,7 @@ steps:
     regionName: 'us-east-2'
     stackName: 'CRUD'
     templateSource: 'linkedArtifact'
-    linkedArtifactName: 'nombre-del-artifact'
+    linkedArtifactName: 'crud'
     deploymentMode: 'incremental'
     actionIfStackAlreadyExists: 'update'
     templateFile: '$(System.ArtifactsDirectory)/cloudformation/CRUD_cloudfomration.yaml'

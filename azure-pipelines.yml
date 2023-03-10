@@ -7,16 +7,25 @@ trigger:
 - main
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: 'ubuntu-latest'
 
 steps:
+- task: DownloadPipelineArtifact@2
+  displayName: 'Download CloudFormation template'
+  inputs:
+    artifactName: 'nombre-del-artifact'
+    downloadPath: '$(System.ArtifactsDirectory)/cloudformation'
+    artifactDownloadPath: 'ClouFormation/CRUD_cloudfomration.yaml'
+
 - task: CloudFormationCreateOrUpdateStack@1
   inputs:
     awsCredentials: 'awsConnection'
     regionName: 'us-east-2'
     stackName: 'CRUD'
-    templateFile: 'path/to/cloudformation-template.yml'
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+    templateSource: 'linkedArtifact'
+    linkedArtifactName: 'nombre-del-artifact'
+    deploymentMode: 'incremental'
+    actionIfStackAlreadyExists: 'update'
+    templateFile: '$(System.ArtifactsDirectory)/cloudformation/CRUD_cloudfomration.yaml'
+
+

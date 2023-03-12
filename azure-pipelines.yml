@@ -10,28 +10,11 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- task: PublishPipelineArtifact@1
-  displayName: 'Publish CloudFormation template artifact'
-  inputs:
-    artifactName: 'crud'
-    targetPath: 'ClouFormation/CRUD_cloudfomration.yaml'
-
-- task: DownloadPipelineArtifact@2
-  displayName: 'Download CloudFormation template'
-  inputs:
-    artifactName: 'crud'
-    downloadPath: '$(System.ArtifactsDirectory)/cloudformation'
-    artifactDownloadPath: 'ClouFormation/CRUD_cloudfomration.yaml'
 
 - task: CloudFormationCreateOrUpdateStack@1
   inputs:
     awsCredentials: 'awsConnection'
     regionName: 'us-east-2'
-    stackName: 'asdq'
-    templateSource: 'linkedArtifact'
-    linkedArtifactName: 'crud'
-    deploymentMode: 'incremental'
-    actionIfStackAlreadyExists: 'update'
-    templateFile: '$(System.ArtifactsDirectory)/cloudformation/CRUD_cloudfomration.yaml'
-
-
+    stackName: 'CRUD'
+    templateSource: 'file'
+    templateFile: 'CRUD_cloudfomration.yaml'

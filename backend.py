@@ -43,19 +43,12 @@ def lambda_handler(event, context):
 
     http_method = event['httpMethod']
     if http_method == 'POST':
-        new_item = {
-            'id': {"N": "2"},
-            'descripcion': {"S": "david"}, 
-            }
-        create_item(new_item)
+        message = 'Se realiza una petición de tipo Get'
     elif http_method == 'GET':
-        pprint(read_item("note-table")["Items"]) 
-        message = 'Se realiza una petición de tipo GET'
+        message = 'Se realiza una petición de tipo Get'
     elif http_method == 'DELETE':
-        delete_item('2')
         message = 'Se realiza una petición de tipo DELETE'
     elif http_method == 'PUT':
-        update_item('2','SET descripcion = :new_desc',{':new_desc': {'S': 'pedro'}})
         message = 'Se realiza una petición de tipo PUT'
     else:
         message = 'Tipo de petición no soportada'

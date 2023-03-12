@@ -181,6 +181,23 @@ Resources:
     Properties:
       AccessControl: Private
 
+  MyHTMLFile:
+  Type: AWS::S3::Object
+  Properties:
+    Bucket: !Ref MyS3Bucket
+    Key: my-html-file.html
+    ContentType: text/html
+    Body: |
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <title>My HTML file</title>
+        </head>
+        <body>
+          <h1>Hello, world!</h1>
+        </body>
+      </html>
+
   MyS3BucketPolicy:
     Type: "AWS::S3::BucketPolicy"
     Properties:

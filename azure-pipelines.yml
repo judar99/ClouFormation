@@ -7,13 +7,14 @@ trigger:
 - main
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: 'ubuntu-latest'
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- task: CloudFormationCreateOrUpdateStack@1
+  inputs:
+    awsCredentials: 'awsConnection'
+    regionName: 'us-east-2'
+    stackName: 'CRUD'
+    templateSource: 'file'
+    templateFile: 'CRUD_cloudfomration.yaml'

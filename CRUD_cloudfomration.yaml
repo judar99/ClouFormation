@@ -54,7 +54,7 @@ Resources:
             if http_method == 'POST':
                 message = 'Se genera una petición de tipo POST'
             elif http_method == 'GET':
-                message = 'Se realiza una petición de tipo GET'
+                message = 'Se realiza una petición de tipo GETtt'
             elif http_method == 'DELETE':
                 message = 'Se realiza una petición de tipo DELETE'
             elif http_method == 'PUT':
@@ -155,9 +155,6 @@ Resources:
         IntegrationHttpMethod: POST
         Credentials: !GetAtt  ApiGatewayRole.Arn
         Uri: !Sub "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${LambdaCRUD.Arn}/invocations"
-
-
-
 
   ApiDeploy:
     Type: AWS::ApiGateway::Deployment

@@ -11,6 +11,13 @@ pool:
 
 steps:
 
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: 'backend.py'
+    includeRootFolder: true
+    archiveType: 'zip'
+    archiveFile: 
+    replaceExistingArchive: true
 
 - task: LambdaDeployFunction@1
   inputs:

@@ -1,0 +1,10 @@
+AWSTemplateFormatVersion: "2010-09-09"
+
+Resources:
+
+  MyS3Bucketjuan:
+    Type: AWS::S3::Bucket
+    Properties:
+        AccessControl: Private
+        WebsiteConfiguration:
+          IndexDocument: subcarpeta/index.html

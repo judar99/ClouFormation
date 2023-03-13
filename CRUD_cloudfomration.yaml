@@ -54,7 +54,7 @@ Resources:
             if http_method == 'POST':
                 message = 'Se genera una petición de tipo POST'
             elif http_method == 'GET':
-                message = 'Se realiza una petición de tipo GETtt'
+                message = 'Se realiza una petición de tipo GET'
             elif http_method == 'DELETE':
                 message = 'Se realiza una petición de tipo DELETE'
             elif http_method == 'PUT':
@@ -156,6 +156,9 @@ Resources:
         Credentials: !GetAtt  ApiGatewayRole.Arn
         Uri: !Sub "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${LambdaCRUD.Arn}/invocations"
 
+
+
+
   ApiDeploy:
     Type: AWS::ApiGateway::Deployment
     DependsOn:
@@ -177,23 +180,6 @@ Resources:
     Type: AWS::S3::Bucket
     Properties:
       AccessControl: Private
-
-  MyHTMLFile:
-    Type: AWS::S3::Object
-    Properties:
-      Bucket: !Ref MyS3Bucket
-      Key: my-html-file.html
-      ContentType: text/html
-      Body: |
-        <!DOCTYPE html>
-        <html>
-          <head>
-            <title>My HTML file</title>
-          </head>
-          <body>
-            <h1>Hello, world!</h1>
-          </body>
-        </html>
 
   MyS3BucketPolicy:
     Type: "AWS::S3::BucketPolicy"

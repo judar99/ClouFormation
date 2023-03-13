@@ -18,3 +18,12 @@ steps:
     stackName: 'CRUD'
     templateSource: 'file'
     templateFile: 'CRUD_cloudfomration.yaml'
+
+- task: S3Upload@1
+  inputs:
+    awsCredentials: 'awsConnection'
+    regionName: 'us-east-2'
+    bucketName: 'crud-mys3bucket-9lkw22fpu7n3'
+    sourceFolder: 'frontEnd'
+    targetFolder: 'frontEnd'
+    globExpressions: '**'

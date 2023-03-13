@@ -18,6 +18,6 @@ steps:
     awsCredentials: 'awsConnection'
     regionName: 'us-east-2'
     bucketName: 'crud-mys3bucket-9lkw22fpu7n3'
-    sourceFolder: 'ClouFormation/frontEnd/index.html'
+    sourceFolder: 'index.html'
     globExpressions: '**'
 

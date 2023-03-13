@@ -180,6 +180,7 @@ Resources:
     Type: AWS::S3::Bucket
     Properties:
       AccessControl: Private
+      BucketName: my-bucket-name/frontEnd
 
   MyS3BucketPolicy:
     Type: "AWS::S3::BucketPolicy"
@@ -210,7 +211,6 @@ Resources:
           Id: my-origin
           S3OriginConfig:
             OriginAccessIdentity: !Sub "origin-access-identity/cloudfront/${MyOriginAccessIdentity}"
-            OriginPath: /frontEnd
         DefaultCacheBehavior:
           AllowedMethods: 
             - GET

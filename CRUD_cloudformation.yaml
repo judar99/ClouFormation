@@ -210,7 +210,6 @@ Resources:
           Id: my-origin
           S3OriginConfig:
             OriginAccessIdentity: !Sub "origin-access-identity/cloudfront/${MyOriginAccessIdentity}"
-            OriginPath: /frontEnd
         DefaultCacheBehavior:
           AllowedMethods: 
             - GET

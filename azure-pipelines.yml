@@ -17,5 +17,5 @@ steps:
     regionName: 'us-east-2'
     stackName: 'CRUD'
     templateSource: 'file'
-    templateFile: 'CRUD_cloudfomration.yaml'
+    templateFile: 'CRUD_cloudformation.yaml'
 
